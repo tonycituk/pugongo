@@ -1,0 +1,8 @@
+.tabs.is-centered
+    ul
+        each tab in tabs
+            li(class=tab.active ? 'is-active' : '')
+                a(href=tab.url)
+                    span(class="icon is-small")
+                        i.fas(class=tab.icon aria-hidden='true')
+                    span.tab-name= tab.name

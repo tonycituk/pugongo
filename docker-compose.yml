@@ -1,0 +1,25 @@
+services:
+    nosqldb:
+        image: mongo
+        container_name: mongo_container
+        environment: 
+            MONGO_INITDB_DATABASE: pugongo
+            MONGO_INITDB_ROOT_USERNAME: mongroot
+            MONGO_INITDB_ROOT_PASSWORD: mongrootPass{}123
+        volumes: 
+            - ./containers-properties/mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+            - ./containers-properties/mongo/database:/data/db
+        ports: 
+            - 27017:27017
+    nosqldbclient:
+        links: [nosqldb]
+        image: mongoclient/mongoclient
+        container_name: mongoclient_container
+        environment:
+            STARTUP_DELAY: 5
+            MONGO_URL: mongodb://mongroot:mongrootPass{}123@nosqldb:27017
+            MONGOCLIENT_DEFAULT_CONNECTION_URL: mongodb://mongroot:mongrootPass{}123@nosqldb:27017
+        volumes: 
+            - ./containers-properties/mongoclient:/data/db
+        ports: 
+            - 3200:3000
