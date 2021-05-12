@@ -1,2 +1,2 @@
-# pugongo
-a CRUD expressJS app using Mongo &amp; Pug.
+## PUGONGO PUGONGO 🐶🐒
+a CRUD expressJS app using Mongo & Pug.
